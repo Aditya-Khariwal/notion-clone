@@ -2,15 +2,17 @@ import RoomProvider from "@/components/RoomProvider"
 import { auth } from "@clerk/nextjs/server"
 import React from "react"
 
-async function Doclayout({children, params:{id}}:{
-    children:React.ReactNode
-    params:{
-        id:string
-    }
+type tParams = Promise<{ slug: string[] }>;
+async function Doclayout({ children, params }: {
+  children: React.ReactNode
+  params: tParams
 }) {
-    const { userId, redirectToSignIn } = await auth()
-    if (!userId) return redirectToSignIn()
+  const { userId, redirectToSignIn } = await auth()
+  if (!userId) return redirectToSignIn()
+  const { slug } = await params;
+  const id = slug[1]
   return (
+
     <RoomProvider roomId={id}>
       {children}
     </RoomProvider>
