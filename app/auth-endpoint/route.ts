@@ -10,13 +10,13 @@ export async function POST(req:NextRequest) {
 
     const session = liveblocks.prepareSession(sessionClaims?.email!,{
         userInfo:{
-            name:sessionClaims?.fullName!,
-            email:sessionClaims?.email!,
-            avatar:sessionClaims?.image!,
+            name:sessionClaims?.fullName,
+            email:sessionClaims?.email,
+            avatar:sessionClaims?.image,
         }
     }) 
     // all the rooms that user has access to..
-    const usersInRoom = await adminDb.collectionGroup("rooms").where("userId", "==", sessionClaims.email!).get()
+    const usersInRoom = await adminDb.collectionGroup("rooms").where("userId", "==", sessionClaims.email).get()
 
     // is the room which we are about to access, is in the list of record that are stored on the user's rooms collection
     const userInRoom = usersInRoom.docs.find((doc)=>doc.id === room)
