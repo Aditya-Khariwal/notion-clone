@@ -5,11 +5,11 @@ import React from "react"
 type Params = { id: string };
 async function Doclayout({ children, params }: {
   children: React.ReactNode
-  params: Params
+  params: Promise<Params>
 }) {
   const { userId, redirectToSignIn } = await auth()
   if (!userId) return redirectToSignIn()
-  const {id} = params
+  const {id} = await params
   return (
 
     <RoomProvider roomId={id}>
