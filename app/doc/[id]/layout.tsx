@@ -9,7 +9,7 @@ async function Doclayout({ children, params }: {
 }) {
   const { userId, redirectToSignIn } = await auth()
   if (!userId) return redirectToSignIn()
-  const {id} = await params
+  const id = (await params).id
   return (
 
     <RoomProvider roomId={id}>
