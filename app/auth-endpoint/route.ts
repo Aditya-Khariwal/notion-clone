@@ -8,7 +8,7 @@ export async function POST(req:NextRequest) {
     if (!userId) return redirectToSignIn()
     const {room} = await req.json()
 
-    const session = liveblocks.prepareSession(sessionClaims?.email!,{
+    const session = liveblocks.prepareSession(sessionClaims?.email,{
         userInfo:{
             name:sessionClaims?.fullName,
             email:sessionClaims?.email,
