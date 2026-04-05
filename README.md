@@ -43,8 +43,6 @@ A full-stack, real-time collaborative workspace inspired by Notion, featuring li
 - **Deployed on Vercel**  
   Fast, globally distributed deployment  
 
----
-
 
 ---
 
